@@ -40,6 +40,5 @@ export async function createCompletion(
   };
 
   const completion = await openai.chat.completions.create(payload);
-  console.log("request executed");
   return completion.choices;
 }
