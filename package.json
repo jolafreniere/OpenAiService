@@ -1,0 +1,17 @@
+{
+  "name": "openaiservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "fs": "^0.0.1-security",
+    "openai": "^4.4.0"
+  },
+  "type": "module"
+}
