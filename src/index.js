@@ -2,6 +2,8 @@ import { Command } from "commander";
 import "dotenv/config";
 import { appLogger, devLogger } from "./logger/index.js";
 
+import whisper from "whisper_bozo";
+import { chatLoop } from "./queryHandler/chatLoop.js";
 import { singlePrompt } from "./queryHandler/singlePrompt.js";
 const program = new Command();
 
@@ -18,9 +20,6 @@ program
   .action(async (prompt) => {
     try {
       await singlePrompt(prompt);
-      // console.log(chalk.green(`[PROMPT]: ${prompt}`));
-      // let results = await createCompletion(prompt);
-      // console.log(chalk.blue(`[ANSWER]: ${results[0].message.content}`));
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -33,9 +32,21 @@ program
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       console.log("Starting a chat");
-      Chat();
+      //TODO: Query user for chat title/save timestamp, nullTitle = default id? notSaved?
+      await chatLoop();
     } catch (error) {
       console.error("An error occurred:", error);
+    }
+  });
+
+program
+  .command("listen")
+  .description("Starts listening through mic for commands")
+  .action(async () => {
+    try {
+      await whisper();
+    } catch (error) {
+      console.error("Whisper Failed:", error);
     }
   });
 

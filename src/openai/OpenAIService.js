@@ -17,7 +17,7 @@ const models = {
 export async function createCompletion(
   userMessage,
   model = models.gpt35,
-  max_tokens = 1000,
+  max_tokens = 1000, //TODO: CREATE PROPER CONFIGURATION, MAGIC NUMBER
   n = 1, //number of answers
   temperature = 0.7
 ) {
